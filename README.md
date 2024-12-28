@@ -23,7 +23,7 @@
 
    1.https://open.bigmodel.cn/ 在官网注册并创建API key;
 
-   2.在该项目的backend创建一个 .env  文件。并添加一下内容    
+   2.在该项目的backend文件夹下创建一个 .env  文件。并添加一下内容    
       **ZHIPU_API_KEY= "你的API key"**
 
 4. 启动前端服务：
