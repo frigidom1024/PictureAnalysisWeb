@@ -10,6 +10,7 @@ import { analyzeImage } from '../api/emotionAnalysis'; // 调用情绪分析 API
 import { validateFile } from '../utils/file'; // 文件验证工具函数
 import { readFileAsDataURL } from '../utils/image'; // 图片文件转换为 base64 的工具函数
 import { API_MESSAGES } from '../api/config'; // API 相关的消息常量
+import { maxHistory } from '../utils/file';
 
 // 类型定义
 import type { ApiError } from '../types/analysis'; // API 错误类型定义
@@ -68,8 +69,8 @@ const saveToHistory = (imageUrl: string, analysis: string) => {
   };
   analysisHistory.value.unshift(record); // 将新记录添加到开头
   // 限制历史记录最多保存10条
-  if (analysisHistory.value.length > 10) {
-    analysisHistory.value = analysisHistory.value.slice(0, 10);
+  if (analysisHistory.value.length > maxHistory) {
+    analysisHistory.value = analysisHistory.value.slice(0, maxHistory);
   }
   localStorage.setItem('analysisHistory', JSON.stringify(analysisHistory.value));//持久化存储
 };
@@ -89,7 +90,7 @@ const analyzeEmotion = async () => {
     ElMessage.success(API_MESSAGES.ANALYSIS_SUCCESS);
   } catch (error) {
     const apiError = error as ApiError;
-    ElMessage.error(apiError.message);
+    ElMessage.error('智谱API错误');
     console.error('Analysis error:', apiError);
   } finally {
     loading.value = false;

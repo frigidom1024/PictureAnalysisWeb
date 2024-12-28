@@ -1,5 +1,8 @@
 import { UploadConfig } from '../types/analysis';
 
+
+export const maxHistory=10;
+
 export const DEFAULT_UPLOAD_CONFIG: UploadConfig = {
   maxSize: 5 * 1024 * 1024, // 5MB
   allowedTypes: ['image/jpeg', 'image/png', 'image/gif']

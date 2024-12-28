@@ -19,8 +19,12 @@
    pip install pydantic
    ```
 
-3. 配置智谱api
+3. 配置智谱API Key
 
+   1.https://open.bigmodel.cn/ 在官网注册并创建API key;
+
+   2.在该项目的backend创建一个 .env  文件。并添加一下内容    
+      **ZHIPU_API_KEY= "你的API key"**
 
 4. 启动前端服务：
    ```bash
@@ -32,8 +36,16 @@
    python backend/main.py
    ```
 
+# 注意事项
+   \src\utils\file.ts 中配置了上传数据的限制和历史记录长度
+   ```
+   export const maxHistory=10;//历史记录长度
 
-
+   export const DEFAULT_UPLOAD_CONFIG: UploadConfig = {
+      maxSize: 5 * 1024 * 1024, // 5MB
+      allowedTypes: ['image/jpeg', 'image/png', 'image/gif']
+   };
+   ```
 
 
 
